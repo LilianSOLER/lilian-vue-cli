@@ -1,69 +1,84 @@
 <template>
+	{{ school }}
 	<div class="school-template">
-		<h1>{{ school.title }}</h1>
+		<h1>{{ school?.title }}</h1>
 		<ul class="parent">
-			<div v-for="(content, index) in school.contents" :key="'content-' + index">
+			<div v-for="(content, index) in school?.contents" :key="'content-' + index">
 				<li>{{ content.title }}</li>
 				<ul>
-					<li
-						v-for="(subContent, index2) in content.subcontents"
-						:key="'sub-content-' + index2"
-					>
-						<a :href="subContent.link">{{ subContent.title }}</a>
-					</li>
+				
 				</ul>
 			</div>
 		</ul>
 	</div>
-	{{ school }}
+
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import axios from "axios";
+
+	// <li
+	// 					v-for="(subContent, index2) in content.subcontents"
+	// 					:key="'sub-content-' + index2"
+	// 				>
+	// 					<a :href="subContent?.link">{{ subContent?.title }}</a>
+	// 				</li>	// <li
+	// 					v-for="(subContent, index2) in content.subcontents"
+	// 					:key="'sub-content-' + index2"
+	// 				>
+	// 					<a :href="subContent?.link">{{ subContent?.title }}</a>
+	// 				</li>
+import { defineComponent, PropType } from "vue";
+import axios, { AxiosResponse } from "axios";
+
+interface School {
+	_id: string;
+	level: string;
+	title: string;
+	contents: [
+		{
+			title: string;
+			_id: string;
+			subcontents: []
+		}
+	]
+}
+
+interface DataComponent {
+	school: null | School;
+}
+
 
 export default defineComponent({
 	name: "School",
 	props: {
 		levelProp: {
 			required: true,
-			type: String,
+			type: String as PropType<string>,
 			default: "peip2",
 		},
 		titleProp: {
 			required: true,
-			type: String,
+			type: String as PropType<string>,
 			default: "application-du-web",
 		},
 	},
-	data() {
+	data() : DataComponent {
 		return {
-			school: {
-				title: "",
-				contents: [
-					{
-						title: "",
-						subcontents: [
-							{
-								title: "",
-								link: "",
-							},
-						],
-					},
-				],
-			},
-		};
+			school: null,
+		}
 	},
 	methods: {
-		upperFirstLetter(str: string) {
+		capitalize(str: string) : string {
+			if (str === "") return "";
+
 			return str.charAt(0).toUpperCase() + str.slice(1);
 		},
 	},
 	mounted() {
 		axios
 			.get(`http://localhost:3000/api/school/${this.titleProp}`)
-			.then((res) => {
-				this.school = res.data.schoolSubject[0].contents[0].subcontent;
+			.then((res: AxiosResponse<{message: string; schoolSubject: School[]}>) => {
+				this.school = res.data.schoolSubject[0];
 			});
 	},
 });
