@@ -29,8 +29,20 @@
 							<router-link class="nav-link" to="/cours/student/amandine"
 								>Amandine</router-link
 							>
+							<router-link class="nav-link" to="/cours/student/salome"
+								>Salome</router-link
+							>
+							<router-link class="nav-link" to="/cours/student/slimane"
+								>Slimane</router-link
+							>
 							<router-link class="nav-link" to="/cours/student/kevin-j"
 								>Kevin J</router-link
+							>
+							<router-link class="nav-link" to="/cours/student/romain-b"
+								>Romain B</router-link
+							>
+							<router-link class="nav-link" to="/cours/student/zoe-b"
+								>Zoe B</router-link
 							>
 						</div>
 					</div>

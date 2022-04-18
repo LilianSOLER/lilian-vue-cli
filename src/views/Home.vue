@@ -18,15 +18,24 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { useHomeInfo } from "@/stores/home";
-
+import axios from "axios";
 
 export default defineComponent({
 	name: "Home",
-	data: function () {
+	data() {
 		return {
-			articles: useHomeInfo().articles,
+			articles: null,
 		};
+	},
+	mounted() {
+		axios
+			.get("https://sheltered-basin-99154.herokuapp.com/api/home")
+			.then((res) => {
+				this.articles = res.data;
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	},
 });
 </script>

@@ -8,13 +8,13 @@ const routes: Array<RouteRecordRaw> = [
     component: Home
   },
   {
-    path: '/cours/student/:id',
+    path: '/cours/student/:name',
     name: 'Students',
-    component: () => import('../views/Students.vue'),
+    component: () => import('../views/Students2.vue'),
     props: true
   },
   {
-    path: '/school/:id1/:id2',
+    path: '/school/:levelProp/:titleProp',
     name: 'School',
     component: () => import('../views/School.vue'),
     props: true

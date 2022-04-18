@@ -1,66 +1,43 @@
 <template>
-	<div class="cours-template">
-		<h1>{{ students.class }} - {{ upperFirstLetter(students.name) }}</h1>
-		<ul class="parent">
-			<div v-for="(cours, index) in students.cours" :key="'courses-' + index">
-				<li>{{ cours.month }}</li>
-				<ul>
-					<li
-						v-for="(lesson, index2) in cours.lessons"
-						:key="'lesson-' + index2"
-					>
-						<a :href="lesson.link">{{ lesson.day }} - {{ lesson.title }}</a>
-					</li>
-				</ul>
-			</div>
-			<div>
-				<li>Utilitaires:</li>
-				<ul>
-					<div v-for="(util, index3) in utils" :key="'util-' + index3">
-						<li>
-							<a :href="util.link">{{ util.title }}</a>
-						</li>
-					</div>
-				</ul>
-			</div>
-		</ul>
-	</div>
+	{{ student }}
+	<br><br>
+	{{ utils }}
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { useStudentsInfo } from '../stores/students';
-import { StudentInfoInterface, StudentsInfoInterface} from '../stores/student/interfaces';
-
-const StudentsInfo: StudentsInfoInterface = useStudentsInfo().content;
+import axios from "axios";
 
 export default defineComponent({
 	name: "Students",
 	props: {
-		id: {
+		name: {
 			type: String,
 			required: true,
 		},
 	},
-	computed: {
-		students() {
-			let students: StudentInfoInterface = StudentsInfo.students[0];
-			Object.values(StudentsInfo.students).forEach((stud) => {
-				if (stud.name === this.id) {
-					students = stud;
-				}
-			});
-
-			return students;
-		},
-		utils() {
-			return StudentsInfo.utils;
-		},
+	data() {
+		return {
+			student: null,
+			utils: null,
+		};
 	},
 	methods: {
 		upperFirstLetter(str: string) {
 			return str.charAt(0).toUpperCase() + str.slice(1);
 		},
+	},
+	mounted() {
+		axios
+			.get(`http://localhost:3000/api/student/${this.name}`)
+			.then((response) => {
+				this.student = response.data["student"];
+			});
+		axios
+			.get(`https://sheltered-basin-99154.herokuapp.com/api/studentUtils`)
+			.then((response) => {
+				this.utils = response.data;
+			});
 	},
 });
 </script>
