@@ -42,6 +42,7 @@ export default defineComponent({
 		await typed.run();
 		await typed.reset(true);
 		typed.type(strings[0]);
+    typed.run();
 	},
 });
 </script>
