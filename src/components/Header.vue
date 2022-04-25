@@ -1,7 +1,9 @@
 <template>
 	<header>
 		<div class="header">
-			<router-link class="nav-link logo" to="/" id="typing">Didelo</router-link>
+			<router-link class="nav-link" to="/">
+				<TypedComponent></TypedComponent>
+			</router-link>
 			<div class="header-right">
 				<div class="topnav" id="topNav">
 					<div class="dropdown">
@@ -77,9 +79,13 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import TypedComponent  from "@/components/Typed.vue";
 
 export default defineComponent({
 	name: "Header",
+	components: {
+		TypedComponent,
+	}
 });
 </script>
 
