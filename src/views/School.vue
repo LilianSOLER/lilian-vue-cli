@@ -81,9 +81,8 @@ export default defineComponent({
 			str = str.replaceAll("-", " ");
 			return str.charAt(0).toUpperCase() + str.slice(1);
 		},
-	},
-	mounted() {
-		axios
+		loadSchool(): void {
+			axios
 			.get(`https://sheltered-basin-99154.herokuapp.com/api/school/${this.titleProp}`)
 			.then(
 				(res: AxiosResponse<{ message: string; schoolSubject: School[] }>) => {
@@ -91,6 +90,15 @@ export default defineComponent({
 					this.school.title = this.capitalize(this.school.title);
 				}
 			);
+		},
+	},
+	mounted() {
+		this.loadSchool();
+	},
+	watch: {
+		titleProp() {
+			this.loadSchool();
+		},
 	},
 });
 </script>
