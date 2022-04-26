@@ -9,7 +9,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Header from '@/components/Header.vue'; // @ is an alias to /src
-import Sidebar from './components/Sidebar.vue';
+import Sidebar from '@/components/Sidebar.vue';
 
 export default defineComponent({
   name: 'Home',

@@ -14,10 +14,10 @@
 						<div class="dropdown-content">
 							<router-link
 								class="nav-link"
-								to="/school/peip2/application-du-web"
+								to="/school/peip-2/application-du-web"
 								>Applications du Web 4</router-link
 							>
-							<router-link class="nav-link" to="/school/info3/programmation-web"
+							<router-link class="nav-link" to="/school/info-3/programmation-web"
 								>Programmation Web 6</router-link
 							>
 						</div>
@@ -70,7 +70,9 @@
 					<a title="Site de Noah SOLER'" href="https://noah.didelo.fr"
 						>Noah SOLER</a
 					>
-					<a href="javascript:void(0);" class="icon" id="myTopNav"> >&#9776;</a>
+					<a href="javascript:void(0);" class="icon" @click="mobileNav()">
+						&#9776;</a
+					>
 				</div>
 			</div>
 		</div>
@@ -79,13 +81,25 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import TypedComponent  from "@/components/Typed.vue";
+import TypedComponent from "@/components/Typed.vue";
 
 export default defineComponent({
 	name: "Header",
 	components: {
 		TypedComponent,
-	}
+	},
+	methods: {
+		mobileNav() {
+			let x = document.getElementById("topNav");
+			if (x !== null) {
+				if (x.className === "topnav") {
+					x.className += " responsive";
+				} else {
+					x.className = "topnav";
+				}
+			}
+		},
+	},
 });
 </script>
 
