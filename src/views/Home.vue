@@ -18,11 +18,23 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
+
+interface Article {
+	paragraphs: [
+		{
+			text: string;
+		}
+	];
+}
+
+interface DataComponent {
+	articles: null | Article[];
+}
 
 export default defineComponent({
 	name: "Home",
-	data() {
+	data(): DataComponent {
 		return {
 			articles: null,
 		};
@@ -30,7 +42,7 @@ export default defineComponent({
 	mounted() {
 		axios
 			.get("https://sheltered-basin-99154.herokuapp.com/api/home")
-			.then((res) => {
+			.then((res: AxiosResponse<Article[]>) => {
 				this.articles = res.data;
 			})
 			.catch((err) => {
