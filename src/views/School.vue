@@ -13,13 +13,7 @@
 							v-for="(subContent, index2) in content.subcontents"
 							:key="'sub-content-' + index2"
 						>
-							<a :href="subContent?.link">{{ subContent?.title }}</a>
-						</li>
-						<li
-							v-for="(subContent, index2) in content.subcontents"
-							:key="'sub-content-' + index2"
-						>
-							<a :href="subContent?.link">{{ subContent?.title }}</a>
+							<a :href="'/' + subContent?.link">{{ subContent?.title }}</a>
 						</li>
 					</ul>
 				</div>

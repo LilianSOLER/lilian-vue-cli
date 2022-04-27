@@ -17,7 +17,9 @@
 								to="/school/peip-2/application-du-web"
 								>Applications du Web 4</router-link
 							>
-							<router-link class="nav-link" to="/school/info-3/programmation-web"
+							<router-link
+								class="nav-link"
+								to="/school/info-3/programmation-web"
 								>Programmation Web 6</router-link
 							>
 						</div>
@@ -67,6 +69,22 @@
 							>
 						</div>
 					</div>
+
+						<div class="dropdown">
+						<button class="dropbtn">
+							Admin
+							<i class="fa fa-caret-down"></i>
+						</button>
+						<div class="dropdown-content">
+							<router-link class="nav-link" to="/login">
+								<span>Login</span>
+							</router-link>
+							<router-link class="nav-link" to="/signup">
+								<span>Signup</span>
+							</router-link>
+						</div>
+					</div>
+					
 					<a title="Site de Noah SOLER'" href="https://noah.didelo.fr"
 						>Noah SOLER</a
 					>
