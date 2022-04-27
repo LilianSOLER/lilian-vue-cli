@@ -30,13 +30,12 @@ export default defineComponent({
 body {
   color: white;
   background-color: #1e1e1e;
-  min-width: 450px;
+  min-width: 600px;
 }
 
 .text-center {
-  margin-left: 10vw;
-  margin-right: 10vw;
   margin-top: 10vh;
+  margin-left: 10vw;
   width: 80vw;
 }
 
