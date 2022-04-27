@@ -107,7 +107,6 @@ export default defineComponent({
 				.then((response: AxiosResponse<{ student: Student }>) => {
 					this.student = response.data.student;
 					this.student.name = this.capitalize(this.student.name);
-					console.log(response.data.student);
 				});
 		},
 		loadUtils(): void {
