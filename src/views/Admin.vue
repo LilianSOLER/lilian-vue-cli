@@ -31,7 +31,7 @@
 							</option>
 						</select>
 					</label>
-          <label for="month">
+					<label for="month">
 						<span>Mois</span>
 						<input type="text" name="month" v-model="month" required />
 					</label>
@@ -69,6 +69,7 @@
 					<button type="submit" @click="submitDeleteStudent">Click Here</button>
 				</form>
 			</section>
+			<hr />
 		</main>
 	</div>
 </template>
@@ -97,7 +98,7 @@ interface Student {
 interface DataComponent {
 	studentsName: string[];
 	student: string;
-  month: string;
+	month: string;
 	classe: string;
 	day: string;
 	link: string;
@@ -112,7 +113,7 @@ export default defineComponent({
 		return {
 			studentsName: [],
 			student: "",
-      month: "",
+			month: "",
 			classe: "",
 			day: "",
 			link: "",
@@ -188,13 +189,13 @@ export default defineComponent({
 					{
 						name: document.querySelector("select")?.value,
 						month: this.month,
-            lessons: [
-              {
-                day: this.day,
-                title: this.title,
-                link: this.link,
-              },
-            ],
+						lessons: [
+							{
+								day: this.day,
+								title: this.title,
+								link: this.link,
+							},
+						],
 					},
 					{
 						headers: {
@@ -205,10 +206,10 @@ export default defineComponent({
 				.then((response: AxiosResponse) => {
 					console.log(response);
 					alert("Modifié !");
-          this.month = "";
-          this.day = "";
-          this.title = "";
-          this.link = "";
+					this.month = "";
+					this.day = "";
+					this.title = "";
+					this.link = "";
 				})
 				.catch((error: Error) => {
 					console.log(error);
